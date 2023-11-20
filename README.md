@@ -28,15 +28,30 @@ pipx install git+https://github.com/ORG_NAME/tap-aircall.git@main
 
 ### Accepted Config Options
 
-<!--
-Developer TODO: Provide a list of config options accepted by the tap.
+Built with the [Meltano Singer SDK](https://sdk.meltano.com).
 
-This section can be created by copy-pasting the CLI output from:
+## Capabilities
 
-```
-tap-aircall --about --format=markdown
-```
--->
+* `catalog`
+* `state`
+* `discover`
+* `about`
+* `stream-maps`
+* `schema-flattening`
+* `batch`
+
+## Settings
+
+| Setting             | Required | Default | Description |
+|:--------------------|:--------:|:-------:|:------------|
+| api_key             | True     | None    | The key to authenticate against the API service |
+| api_token           | True     | None    | The token to authenticate against the API service |
+| start_date          | False    | None    | The earliest record date to sync |
+| stream_maps         | False    | None    | Config object for stream maps capability. For more information check out [Stream Maps](https://sdk.meltano.com/en/latest/stream_maps.html). |
+| stream_map_config   | False    | None    | User-defined config values to be used within map expressions. |
+| flattening_enabled  | False    | None    | 'True' to enable schema flattening and automatically expand nested properties. |
+| flattening_max_depth| False    | None    | The max depth to flatten schemas. |
+| batch_config        | False    | None    |             |
 
 A full list of supported settings and capabilities for this
 tap is available by running:

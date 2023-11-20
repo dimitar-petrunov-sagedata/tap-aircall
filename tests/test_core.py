@@ -19,6 +19,3 @@ TestTapAircall = get_tap_test_class(
     tap_class=TapAircall,
     config=SAMPLE_CONFIG,
 )
-
-
-# TODO: Create additional tests as appropriate for your tap.
