@@ -3,7 +3,7 @@
 
 name: Test tap-aircall
 
-on: [push]
+on: pull_request
 
 jobs:
   pytest:

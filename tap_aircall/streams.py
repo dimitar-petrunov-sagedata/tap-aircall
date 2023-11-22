@@ -18,7 +18,6 @@ class CallsStream(AircallStream):
     path = "/calls"
     primary_keys: t.ClassVar[list[str]] = ["id"]
     replication_key = 'started_at'
-    is_sorted = True
     records_jsonpath = "$.calls[*]"
     schema = PropertiesList(
         Property("id", IntegerType),
