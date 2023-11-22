@@ -58,7 +58,7 @@ class AircallStream(RESTStream):
         )
 
     def get_url_params(self, context, next_page_token):
-        params = {}
+        params = {'per_page':50}
         start_date = self.get_starting_replication_key_value(context)
         
         if start_date:

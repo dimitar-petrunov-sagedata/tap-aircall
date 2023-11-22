@@ -1,0 +1,24 @@
+version: 1
+send_anonymous_usage_stats: false
+project_id: 40eb93e3-36f8-492b-bb71-deec50c35381
+default_environment: test
+environments:
+- name: test
+plugins:
+  extractors:
+  - name: tap-aircall
+    namespace: aircall
+    pip_url: -e .
+    capabilities:
+    - state
+    - catalog
+    - discover
+    config:
+      start_date: '2023-01-20T12:00:00Z'
+    select:
+      - calls.*
+
+  loaders:
+  - name: target-jsonl
+    variant: andyh1203
+    pip_url: target-jsonl
