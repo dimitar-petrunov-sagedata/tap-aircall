@@ -30,12 +30,17 @@ class CallsStream(AircallStream):
     records_jsonpath = "$.calls[*]"
     schema = PropertiesList(
         Property("id", IntegerType),
+        Property("direct_link", StringType),
         Property("started_at", IntegerType),
         Property("answered_at", IntegerType),
         Property("ended_at", IntegerType),
         Property("duration", IntegerType),
         Property("status", StringType),
         Property("direction", StringType),
+        Property("raw_digits", StringType),
+        Property("asset", StringType),
+        Property("recording", StringType),
+        Property("voicemail", StringType),
         Property("archived", BooleanType),
         Property("missed_call_reason", StringType),
         Property("cost", StringType),
