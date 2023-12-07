@@ -14,7 +14,9 @@ plugins:
     - catalog
     - discover
     config:
-      start_date: '2023-01-20T12:00:00Z'
+      start_date: '2023-08-20T12:00:00Z'
+      api_key: $TAP_AIRCALL_API_KEY
+      api_token: $TAP_AIRCALL_API_TOKEN
     select:
       - calls.*
 

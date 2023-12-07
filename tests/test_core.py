@@ -8,9 +8,11 @@ from singer_sdk.testing import get_tap_test_class
 from tap_aircall.tap import TapAircall
 
 SAMPLE_CONFIG = {
-    "start_date": (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%SZ"),
-    "api_key": os.getenv('TAP_AIRCALL_API_KEY'),
-    "api_token": os.getenv('TAP_AIRCALL_API_TOKEN')
+    "start_date": (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=1)).strftime(
+        "%Y-%m-%dT%H:%M:%SZ"
+    ),
+    "api_key": os.getenv("TAP_AIRCALL_API_KEY"),
+    "api_token": os.getenv("TAP_AIRCALL_API_TOKEN"),
 }
 
 

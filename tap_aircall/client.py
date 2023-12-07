@@ -28,14 +28,12 @@ else:
 _Auth = Callable[[requests.PreparedRequest], requests.PreparedRequest]
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 
+
 class MyPaginator(BaseHATEOASPaginator):
     def get_next_url(self, response):
         data = response.json()
         return data.get("meta").get("next_page_link")
-    
-# class MyPaginator(BasePageNumberPaginator):
-#     def has_more(self, response: Response) -> bool:
-#         return response.json().get('meta').get('next_page_link') != None
+
 
 class AircallStream(RESTStream):
     """Aircall stream class."""
@@ -49,28 +47,25 @@ class AircallStream(RESTStream):
 
     @property
     def authenticator(self):
-        """Return the authenticator.
-        """
+        """Return the authenticator."""
         return BasicAuthenticator.create_for_stream(
-            self,
-            username=self.config.get('api_key'),
-            password=self.config.get('api_token')
+            self, username=self.config.get("api_key"), password=self.config.get("api_token")
         )
 
     def get_url_params(self, context, next_page_token):
-        params = {'per_page':50}
+        params = {"per_page": 50}
         start_date = self.get_starting_replication_key_value(context)
-        
+
         if start_date:
             if type(start_date) == str:
                 start_date = int(datetime.timestamp(datetime.strptime(start_date, "%Y-%m-%dT%H:%M:%SZ")))
             params.update({"from": start_date})
-            
+
         if next_page_token:
             params.update(parse_qsl(next_page_token.query))
-            
+
         return params
-    
+
     def get_new_paginator(self) -> BaseHATEOASPaginator:
         """Create a new pagination helper instance.
 
@@ -85,5 +80,3 @@ class AircallStream(RESTStream):
             A pagination helper instance.
         """
         return MyPaginator()
-
-

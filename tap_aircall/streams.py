@@ -8,7 +8,16 @@ from pathlib import Path
 from typing import Iterable
 
 from singer_sdk import typing as th  # JSON Schema typing helpers
-from singer_sdk.typing import IntegerType, StringType, DateTimeType, ObjectType, Property, PropertiesList, ArrayType, BooleanType
+from singer_sdk.typing import (
+    IntegerType,
+    StringType,
+    DateTimeType,
+    ObjectType,
+    Property,
+    PropertiesList,
+    ArrayType,
+    BooleanType,
+)
 
 from tap_aircall.client import AircallStream
 
@@ -17,7 +26,7 @@ class CallsStream(AircallStream):
     name = "calls"
     path = "/calls"
     primary_keys: t.ClassVar[list[str]] = ["id"]
-    replication_key = 'started_at'
+    replication_key = "started_at"
     records_jsonpath = "$.calls[*]"
     schema = PropertiesList(
         Property("id", IntegerType),
@@ -36,9 +45,10 @@ class CallsStream(AircallStream):
         Property("assigned_to", ObjectType(Property("id", IntegerType))),
         Property("transferred_by", ObjectType(Property("id", IntegerType))),
         Property("transferred_to", ObjectType(Property("id", IntegerType))),
-        Property("tags", ArrayType(ObjectType(Property("id", IntegerType))))
+        Property("tags", ArrayType(ObjectType(Property("id", IntegerType)))),
     ).to_dict()
-    
+
+
 class UsersStream(AircallStream):
     name = "users"
     path = "/users"
@@ -55,9 +65,10 @@ class UsersStream(AircallStream):
         Property("numbers", ArrayType(ObjectType(Property("id", IntegerType)))),
         Property("time_zone", StringType),
         Property("language", StringType),
-        Property("wrap_up_time", IntegerType)
+        Property("wrap_up_time", IntegerType),
     ).to_dict()
-    
+
+
 class NumbersStream(AircallStream):
     name = "numbers"
     path = "/numbers"
@@ -74,9 +85,10 @@ class NumbersStream(AircallStream):
         Property("open", BooleanType),
         Property("availability_status", StringType),
         Property("is_ivr", BooleanType),
-        Property("priority", IntegerType)        
+        Property("priority", IntegerType),
     ).to_dict()
-    
+
+
 class ContactsStream(AircallStream):
     name = "contacts"
     path = "/contacts"
@@ -90,9 +102,10 @@ class ContactsStream(AircallStream):
         Property("company_name", StringType),
         Property("description", StringType),
         Property("information", StringType),
-        Property("is_shared", BooleanType)     
+        Property("is_shared", BooleanType),
     ).to_dict()
-    
+
+
 class TagsStream(AircallStream):
     name = "tags"
     path = "/tags"
@@ -103,5 +116,5 @@ class TagsStream(AircallStream):
         Property("direct_link", StringType),
         Property("name", StringType),
         Property("color", StringType),
-        Property("description", StringType) 
+        Property("description", StringType),
     ).to_dict()
